@@ -41,6 +41,12 @@ h2.sec{margin:22px 0 8px;font-size:1.05rem;color:var(--brand2);letter-spacing:.1
 .mtab img.ti{height:88px;max-width:96px;object-fit:contain;border:1px solid var(--line);border-radius:6px;background:#fff}
 .mtab td.nm img.gt{display:block;margin:6px auto 0;width:60px;border:1px solid var(--line);border-radius:6px;background:#fff}
 img.strip{width:100%;display:block;margin:8px 0;border:1px solid var(--line);border-radius:10px;background:#fff}
+/* 韻文詩體顏色 */
+.yb{border:none;color:#fff;border-radius:10px;padding:8px 14px;font-weight:800;line-height:1.5}
+.yb small{display:block;font-weight:700;opacity:.9;font-size:.72rem}
+.yb1{background:#a8352b}.yb2{background:#4a7c3f}.yb3{background:#2e6f8e}.yb4{background:#6a4a8e}
+th.yb1,th.yb2,th.yb3,th.yb4{color:#fff!important}
+.tint1{background:#faf0ee}.tint2{background:#f2f7ef}.tint3{background:#eef5f8}.tint4{background:#f4f0f8}
 /* 信封示意圖 */
 .envgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin:10px 0}
 .envbox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px}
@@ -645,12 +651,26 @@ footer{text-align:center;color:var(--muted);font-size:.75rem;margin-top:34px;let
       <tr><td class="nm">黃鼠狼給雞拜年</td><td>不安好心</td><td class="nm">啞巴吃黃連</td><td>有苦說不出</td></tr>
     </table></div>
     <h2 class="sec">外來語</h2>
-    <div class="tree"><span class="k">由英語衍變</span>
-      <div class="t2">部落格（blog）、巴士（bus）、蘇打（soda）、幽浮（UFO）、吐司（toast）、吉他（guitar）、駭客（hacker）、幽默（humor）、模特兒（model）、爵士（jazz）、派對（party）、披薩（pizza）、巧克力（chocolate）、咖啡（coffee）、可樂（cola）、拷貝（copy）、布丁（pudding）、粉絲（fans）、夾克（jacket）、盎司（ounce）、檸檬（lemon）、優格（yogurt）、撲克牌（poker）、麥克風（microphone）</div>
-    </div>
-    <div class="tree"><span class="k">由日語衍變</span>
-      <div class="t2">多桑（爸爸）、看板（招牌）、運將（司機）、寫真（照片）、一級棒（最棒的）、壽司（一種日本料理）、卡哇伊（可愛）、阿奇毛（烤番薯）、奇蒙子（心情）、阿莎力（很乾脆）、哇沙米（芥末）、天婦羅／甜不辣（一種日式食品）、歐吉桑（中老年男人）、歐巴桑（中老年婦人）、榻榻米（厚草蓆）、阿里阿多（謝謝）、莎喲娜拉（再見）、沙西米（生魚片）</div>
-    </div>
+    <div class="mtabwrap"><table class="mtab" style="min-width:640px">
+      <tr><th colspan="6">1. 由英語衍變</th></tr>
+      <tr><th>英文</th><th>外來語</th><th>英文</th><th>外來語</th><th>英文</th><th>外來語</th></tr>
+      <tr><td class="wd">blog</td><td>部落格</td><td class="wd">model</td><td>模特兒</td><td class="wd">pudding</td><td>布丁</td></tr>
+      <tr><td class="wd">bus</td><td>巴士</td><td class="wd">jazz</td><td>爵士</td><td class="wd">fans</td><td>粉絲</td></tr>
+      <tr><td class="wd">soda</td><td>蘇打</td><td class="wd">party</td><td>派對</td><td class="wd">jacket</td><td>夾克</td></tr>
+      <tr><td class="wd">UFO</td><td>幽浮</td><td class="wd">pizza</td><td>披薩</td><td class="wd">ounce</td><td>盎司</td></tr>
+      <tr><td class="wd">toast</td><td>吐司</td><td class="wd">chocolate</td><td>巧克力</td><td class="wd">lemon</td><td>檸檬</td></tr>
+      <tr><td class="wd">guitar</td><td>吉他</td><td class="wd">coffee</td><td>咖啡</td><td class="wd">yogurt</td><td>優格</td></tr>
+      <tr><td class="wd">hacker</td><td>駭客</td><td class="wd">cola</td><td>可樂</td><td class="wd">poker</td><td>撲克牌</td></tr>
+      <tr><td class="wd">humor</td><td>幽默</td><td class="wd">copy</td><td>拷貝</td><td class="wd">microphone</td><td>麥克風</td></tr>
+      <tr><th colspan="6">2. 由日語衍變</th></tr>
+      <tr><th>日音</th><th>意思</th><th>日音</th><th>意思</th><th>日音</th><th>意思</th></tr>
+      <tr><td class="wd">多桑</td><td>爸爸</td><td class="wd">卡哇伊</td><td>可愛</td><td class="wd">歐吉桑</td><td>中老年男人</td></tr>
+      <tr><td class="wd">看板</td><td>招牌</td><td class="wd">阿奇毛</td><td>烤番薯</td><td class="wd">歐巴桑</td><td>中老年婦人</td></tr>
+      <tr><td class="wd">運將</td><td>司機</td><td class="wd">奇蒙子</td><td>心情</td><td class="wd">榻榻米</td><td>厚草蓆</td></tr>
+      <tr><td class="wd">寫真</td><td>照片</td><td class="wd">阿莎力</td><td>很乾脆</td><td class="wd">阿里阿多</td><td>謝謝</td></tr>
+      <tr><td class="wd">一級棒</td><td>最棒的</td><td class="wd">哇沙米</td><td>芥末</td><td class="wd">莎喲娜拉</td><td>再見</td></tr>
+      <tr><td class="wd">壽司</td><td>一種日本料理</td><td class="wd">天婦羅／甜不辣</td><td>一種日式食品</td><td class="wd">沙西米</td><td>生魚片</td></tr>
+    </table></div>
     <h2 class="sec">應用文——書信、便條</h2>
     <div class="tree"><span class="k">書信結構</span>書信是日常生活中傳遞訊息、表達情意的一種方式，屬於應用文的一種。
       <div class="t2">・<b>前段</b>：稱謂（對收信人的稱呼，<i class="hl">切記不可連名帶姓寫出</i>）／提稱語（請對方讀信的意思，可略）／啟事敬詞（開始述說事情的發語詞，可略）</div>
@@ -795,6 +815,24 @@ footer{text-align:center;color:var(--muted);font-size:.75rem;margin-top:34px;let
   </div>
   <!-- 文學常識 -->
   <div class="lpane" id="learn-wx" style="display:none">
+    <h2 class="sec">韻文的演變（依時間順序）</h2>
+    <div class="flow">
+      <span class="yb yb1">樂府詩、古詩<small>漢、魏～南北朝</small></span><span class="farr">→</span>
+      <span class="yb yb2">近體詩<small>唐</small></span><span class="farr">→</span>
+      <span class="yb yb3">詞<small>宋</small></span><span class="farr">→</span>
+      <span class="yb yb4">曲<small>元</small></span>
+    </div>
+    <div class="mtabwrap"><table class="mtab" style="min-width:720px">
+      <tr><th>類別</th><th class="yb1">樂府詩</th><th class="yb1">古詩</th><th class="yb2">近體詩（絕句／律詩）</th><th class="yb3">詞</th><th class="yb4">曲</th></tr>
+      <tr><td class="nm">盛行年代</td><td colspan="2" class="tint1">漢、魏至南北朝</td><td class="tint2">唐</td><td class="tint3">宋</td><td class="tint4">元</td></tr>
+      <tr><td class="nm">別稱</td><td class="tint1">標題多用歌、行、曲等字</td><td class="tint1">古風</td><td class="tint2"><i class="hl">今體詩</i></td><td class="tint3"><i class="hl">詩餘</i>、樂府、倚聲、曲子詞、<i class="hl">長短句</i></td><td class="tint4"><i class="hl">詞餘</i>、樂府</td></tr>
+      <tr><td class="nm">句數</td><td colspan="2" class="tint1">不限</td><td class="tint2">四句／八句</td><td class="tint3">依<i class="hl">詞牌</i>規定</td><td class="tint4">依<i class="hl">曲牌</i>規定</td></tr>
+      <tr><td class="nm">字數</td><td colspan="2" class="tint1">不限</td><td class="tint2">五言 20／40 字<br>七言 28／56 字</td><td class="tint3"><i class="hl">小令</i> 58 字以下<br><i class="hl">中調</i> 59～90 字<br><i class="hl">長調</i> 91 字以上</td><td class="tint4">依曲牌規定，<i class="hl">可加襯字</i></td></tr>
+      <tr><td class="nm">押韻</td><td colspan="2" class="tint1">偶數句押韻，<i class="hl">可換韻</i></td><td class="tint2"><i class="hl">首句可押可不押</i>、一韻到底</td><td class="tint3"><i class="hl">可換韻</i></td><td class="tint4"><i class="hl">不可換韻</i></td></tr>
+      <tr><td class="nm">平仄</td><td colspan="2" class="tint1">不限</td><td class="tint2">有一定格式</td><td class="tint3">有一定格式</td><td class="tint4">有一定格式</td></tr>
+      <tr><td class="nm">對仗</td><td colspan="2" class="tint1">不限</td><td class="tint2">絕句不限；律詩<i class="hl">頷、頸聯須對仗</i></td><td class="tint3">不限（依詞牌規定）</td><td class="tint4">不限（依曲牌規定）</td></tr>
+      <tr><td class="nm">句式</td><td class="tint1">多長短句</td><td class="tint1">句式整齊，多五、七言</td><td class="tint2">五、七言</td><td class="tint3">長短句</td><td class="tint4">長短句</td></tr>
+    </table></div>
     <h2 class="sec">古詩格律</h2>
     <div class="mtabwrap"><table class="mtab" style="min-width:620px">
       <tr><td class="nm">範例</td><td colspan="3">涉江采芙蓉，蘭澤多芳草。采之欲遺誰？所思在遠道。還顧望舊鄉，長路漫浩浩。同心而離居，憂傷以終老。（漢佚名 古詩十九首 涉江采芙蓉）</td></tr>
@@ -843,19 +881,6 @@ footer{text-align:center;color:var(--muted);font-size:.75rem;margin-top:34px;let
       <tr><td class="nm" rowspan="2">散曲</td><td class="wd">小令</td><td>(1) <i class="hl">可加襯字</i>，<i class="hl">無科、白</i>，一韻到底，平仄通押，性質類似歌曲。(2) 只用單一曲牌，形式與詞略同，差別在<i class="hl">詞不加襯字</i>。</td><td rowspan="2">(1) 風格可分豪放、清麗兩派。豪放派以<i class="hl">馬致遠</i>稱首，清麗派則以<i class="hl">張可久</i>為魁。<br>(2) 元曲四大家：<i class="hl">關漢卿、白樸、馬致遠、鄭光祖</i>。</td></tr>
       <tr><td class="wd">散套</td><td>(1) 又名「<i class="hl">套數</i>」、「<i class="hl">套曲</i>」。(2) 由同宮調若干小令組成。（宮調類似現代音樂中的「調」，如 C 大調）</td></tr>
       <tr><td class="nm">劇曲<br>（戲曲）</td><td class="wd">雜劇</td><td>(1) 盛行時期：<i class="hl">元、明</i>。(2) 呈現方式：有<i class="hl">曲</i>（歌詞）、<i class="hl">科</i>（動作）、<i class="hl">白</i>（獨白或對話）。(3) 特色：通常每齣分四折，一折即一幕，由一人獨唱。</td><td>元劇四大家及代表作品：<br>(1) 關漢卿：<i class="hl">竇娥冤</i>　(2) 馬致遠：<i class="hl">漢宮秋</i><br>(3) 王實甫：<i class="hl">西廂記</i>　(4) 白樸：<i class="hl">梧桐雨</i></td></tr>
-    </table></div>
-    <h2 class="sec">韻文比較</h2>
-    <div class="flow"><span class="fbox b">樂府詩、古詩（漢、魏～南北朝）</span><span class="farr">→</span><span class="fbox b">近體詩（唐）</span><span class="farr">→</span><span class="fbox b">詞（宋）</span><span class="farr">→</span><span class="fbox b">曲（元）</span></div>
-    <div class="mtabwrap"><table class="mtab" style="min-width:720px">
-      <tr><th>類別</th><th>樂府詩</th><th>古詩</th><th>近體詩（絕句／律詩）</th><th>詞</th><th>曲</th></tr>
-      <tr><td class="nm">盛行年代</td><td colspan="2">漢、魏至南北朝</td><td>唐</td><td>宋</td><td>元</td></tr>
-      <tr><td class="nm">別稱</td><td>標題多用歌、行、曲等字</td><td>古風</td><td><i class="hl">今體詩</i></td><td><i class="hl">詩餘</i>、樂府、倚聲、曲子詞、<i class="hl">長短句</i></td><td><i class="hl">詞餘</i>、樂府</td></tr>
-      <tr><td class="nm">句數</td><td colspan="2">不限</td><td>四句／八句</td><td>依<i class="hl">詞牌</i>規定</td><td>依<i class="hl">曲牌</i>規定</td></tr>
-      <tr><td class="nm">字數</td><td colspan="2">不限</td><td>五言 20／40 字<br>七言 28／56 字</td><td><i class="hl">小令</i> 58 字以下<br><i class="hl">中調</i> 59～90 字<br><i class="hl">長調</i> 91 字以上</td><td>依曲牌規定，<i class="hl">可加襯字</i></td></tr>
-      <tr><td class="nm">押韻</td><td colspan="2">偶數句押韻，<i class="hl">可換韻</i></td><td><i class="hl">首句可押可不押</i>、一韻到底</td><td><i class="hl">可換韻</i></td><td><i class="hl">不可換韻</i></td></tr>
-      <tr><td class="nm">平仄</td><td colspan="2">不限</td><td>有一定格式</td><td>有一定格式</td><td>有一定格式</td></tr>
-      <tr><td class="nm">對仗</td><td colspan="2">不限</td><td>絕句不限；律詩<i class="hl">頷、頸聯須對仗</i></td><td>不限（依詞牌規定）</td><td>不限（依曲牌規定）</td></tr>
-      <tr><td class="nm">句式</td><td>多長短句</td><td>句式整齊，多五、七言</td><td>五、七言</td><td>長短句</td><td>長短句</td></tr>
     </table></div>
     <h2 class="sec">散文及小說知識</h2>
     <div class="mtabwrap"><table class="mtab" style="min-width:640px">
