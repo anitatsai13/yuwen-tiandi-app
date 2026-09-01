@@ -41,6 +41,22 @@ h2.sec{margin:22px 0 8px;font-size:1.05rem;color:var(--brand2);letter-spacing:.1
 .mtab img.ti{height:88px;max-width:96px;object-fit:contain;border:1px solid var(--line);border-radius:6px;background:#fff}
 .mtab td.nm img.gt{display:block;margin:6px auto 0;width:60px;border:1px solid var(--line);border-radius:6px;background:#fff}
 img.strip{width:100%;display:block;margin:8px 0;border:1px solid var(--line);border-radius:10px;background:#fff}
+/* 信封示意圖 */
+.envgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin:10px 0}
+.envbox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px}
+.envbox .cap{text-align:center;font-weight:800;color:var(--brand2);font-size:.88rem;margin-bottom:8px}
+.env{position:relative;border:2px solid var(--brand2);border-radius:6px;background:#fffdf6;height:210px;font-size:.78rem;line-height:1.5}
+.env .stamp{position:absolute;width:34px;height:42px;border:1.5px dashed var(--brand);border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--brand);font-size:.68rem}
+.env .lbl{color:var(--muted);font-size:.66rem}
+.env-w .stamp{top:8px;right:8px}
+.env-w .from{position:absolute;top:8px;left:10px}
+.env-w .to{position:absolute;top:50%;left:50%;transform:translate(-50%,-30%);text-align:left}
+.env-c{display:flex;justify-content:center;gap:14px;padding:10px 0}
+.env-c .stamp{top:8px;left:8px}
+.env-c .col{writing-mode:vertical-rl;letter-spacing:.15em;height:186px;margin-top:6px}
+.env-c .mid{writing-mode:vertical-rl;border:2px solid var(--bad);border-radius:4px;padding:8px 6px;height:160px;margin-top:12px;font-size:.95rem;font-weight:700;letter-spacing:.3em}
+.env-c .rcol{margin-top:2px}
+.env-c .lcol{margin-top:40px;font-size:.72rem}
 .hl{font-style:normal;font-weight:900;color:var(--brand);background:var(--mark);border-radius:4px;padding:0 3px;margin:0 1px}
 .pn{background:var(--mark);border-radius:3px;padding:0 2px;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--brand)}
 .bn{background:var(--mark);border-radius:3px;padding:0 2px;text-decoration:underline wavy;text-underline-offset:5px;text-decoration-color:var(--brand)}
@@ -661,13 +677,32 @@ footer{text-align:center;color:var(--muted);font-size:.75rem;margin-top:34px;let
       <tr><td class="nm">已故卑幼</td><td class="wd"><i class="hl">亡</i></td><td>亡弟、亡妹、亡姪</td><td class="wd">—</td><td>—</td></tr>
     </table></div>
     <div class="note">補充：稱人父子「賢喬梓」／稱人夫婦「賢伉儷」／稱人兄弟「賢昆仲、賢昆玉」／稱己父子「愚父子」／稱己夫婦「愚夫婦」／稱己兄弟「愚兄弟」。</div>
-    <div class="tree"><span class="k">信封</span>
-      <div class="t2">・<b>西式信封（橫寫）</b>：左上角寫寄信人姓名、地址、郵遞區號；中央寫收信人地址、姓名＋啟封詞；郵票貼右上角。</div>
-      <div class="t2">・<b>中式信封（直寫）</b>：中央框內寫收信人姓名＋稱呼＋啟封詞；右側寫收信人地址（<i class="hl">寄信人地址不可高於收信人地址</i>）；左側寫寄信人地址＋緘封詞；郵票貼左上角。</div>
-      <div class="t2">・信封中欄「收信人」的稱謂是<i class="hl">郵差或送信人對收信人的稱呼</i>，不可用私人關係的稱呼（如「祖母」、「父親」）；但「老師」、「教授」已成為一般稱呼，可以使用。</div>
-      <div class="t2">・啟封詞<i class="hl">不可使用「敬啟」或「恭啟」</i>（不能要求對方恭敬地拆信）。</div>
-      <div class="t2">・明信片因為沒有信封，啟封詞只能用「<i class="hl">收</i>」；緘封詞只能用「<i class="hl">寄</i>」。</div>
+    <h2 class="sec" style="font-size:.95rem">信封格式</h2>
+    <div class="envgrid">
+      <div class="envbox"><div class="cap">▼ 西式信封（橫寫）</div>
+        <div class="env env-w">
+          <div class="stamp">郵票</div>
+          <div class="from">116-789<span class="lbl">（寄信人郵遞區號）</span><br>臺北市文山區○○路○段○○號<br>魯乙<b>緘</b> <span class="lbl">（緘封詞）</span></div>
+          <div class="to">800-614<span class="lbl">（收信人郵遞區號）</span><br>高雄市新興區○○路○段○○號<br><b>崔智泰　先生　臺啟</b> <span class="lbl">（啟封詞）</span></div>
+        </div>
+      </div>
+      <div class="envbox"><div class="cap">▼ 中式信封（直寫）</div>
+        <div class="env env-c">
+          <div class="stamp">郵票</div>
+          <div class="col rcol">臺東縣臺東市○○路○段○○號 <span class="lbl">（收信人地址）</span></div>
+          <div class="mid">南宮民　先生　鈞啟</div>
+          <div class="col lcol">臺北市○○路○○號　黃貞敏謹<b>緘</b> <span class="lbl">（寄信人＋緘封詞）</span></div>
+        </div>
+      </div>
     </div>
+    <div class="mtabwrap"><table class="mtab" style="min-width:620px">
+      <tr><th>項目</th><th>說　明</th></tr>
+      <tr><td class="nm">西式信封<br>（橫寫）</td><td>左上角寫<i class="hl">寄信人</i>姓名、地址、郵遞區號；中央寫<i class="hl">收信人</i>地址、姓名＋啟封詞；郵票貼<i class="hl">右上角</i>。</td></tr>
+      <tr><td class="nm">中式信封<br>（直寫）</td><td>中央框內寫收信人姓名＋稱呼＋啟封詞；右側寫收信人地址（<i class="hl">寄信人地址不可高於收信人地址</i>）；左側寫寄信人地址＋緘封詞；郵票貼<i class="hl">左上角</i>。</td></tr>
+      <tr><td class="nm">收信人稱謂</td><td>信封中欄「收信人」的稱謂是<i class="hl">郵差或送信人對收信人的稱呼</i>，不可用私人關係的稱呼（如「祖母」、「父親」）；但「老師」、「教授」已成為一般稱呼，可以使用。</td></tr>
+      <tr><td class="nm">啟封詞</td><td><i class="hl">不可使用「敬啟」或「恭啟」</i>（不能要求對方恭敬地拆信）。</td></tr>
+      <tr><td class="nm">明信片</td><td>因為沒有信封，啟封詞只能用「<i class="hl">收</i>」；緘封詞只能用「<i class="hl">寄</i>」。</td></tr>
+    </table></div>
     <div class="tree"><span class="k">便條</span>簡化的書信，即簡易方便的字條，應用廣泛，如：商借、請託、餽贈、答謝、邀約、請假等。
       <div class="t2">寫作原則：1. 內容簡單扼要，免除一切客套。　2. <i class="hl">不含機密性</i>，用語力求明確簡潔。　3. 適用於家人和熟悉的親友，但較<i class="hl">不宜用於尊長和新交的朋友</i>。</div>
     </div>
@@ -703,11 +738,19 @@ footer{text-align:center;color:var(--muted);font-size:.75rem;margin-top:34px;let
       <tr><td class="wd">兄弟</td><td><i class="hl">雁行失序</i>／痛失手足／雁行折翼（兒子喪：<i class="hl">西河之痛</i>／抱痛西河／喪明之痛）</td></tr>
       <tr><td class="wd">朋友</td><td><i class="hl">響絕牙琴</i>／<i class="hl">話冷雞窗</i>／人琴俱亡／伊人宛在／痛失知音</td></tr>
     </table></div>
-    <div class="tree"><span class="k">柬帖</span>「柬帖」原是書信的一種。古時無紙，將文字刻在竹片上稱「<i class="hl">柬</i>」，寫在絹帛上的就叫「<i class="hl">帖</i>」。古時禮制繁複，用於邀宴的稱「請柬」，用於餽贈的稱「禮帖」。今概稱婚喪喜慶、交際應酬所用的簡短文書為「柬帖」。內容包括：(1)<i class="hl">時間</i>　(2)<i class="hl">地點</i>　(3)<i class="hl">目的</i>　(4)<i class="hl">發帖人具名</i>。
-      <div class="t2" style="margin-top:6px">・婚嫁用語：<b>嘉禮、吉夕、合卺</b>（指結婚。以一瓠分為兩瓢叫「卺」，新婚時夫婦各執一瓢而飲，故稱結婚為「合卺」）／<b>文定</b>（訂婚。「文」為禮金，問名後卜吉，則納幣為定，是為訂婚）／<b>于歸</b>（古時女以男為家，故出嫁曰「于歸」）</div>
-      <div class="t2">・喜慶及普通應酬：<b>桃觴、桃樽</b>（祝壽的酒席）／<b>湯餅</b>（生兒三日宴客，是為湯餅筵）／<b>彌月之慶</b>（嬰兒出生後滿月宴客）／<b>臺光</b>（「臺」是對人的敬稱，「光」指光臨）</div>
-      <div class="t2">・喜慶送禮請收受之敬語：<b>哂納、哂存、莞存、莞納</b>（送長輩、長官之禮用。「哂」、「莞」都有微笑之意）／<b>莞收、笑納</b>（送平輩之禮用）</div>
-    </div>
+    <div class="tree"><span class="k">柬帖</span>「柬帖」原是書信的一種。古時無紙，將文字刻在竹片上稱「<i class="hl">柬</i>」，寫在絹帛上的就叫「<i class="hl">帖</i>」。古時禮制繁複，用於邀宴的稱「請柬」，用於餽贈的稱「禮帖」。今概稱婚喪喜慶、交際應酬所用的簡短文書為「柬帖」。內容包括：(1)<i class="hl">時間</i>　(2)<i class="hl">地點</i>　(3)<i class="hl">目的</i>　(4)<i class="hl">發帖人具名</i>。</div>
+    <div class="mtabwrap"><table class="mtab" style="min-width:620px">
+      <tr><th>類別</th><th>柬帖用語</th><th>說　明</th></tr>
+      <tr><td class="nm" rowspan="3">婚嫁</td><td class="wd">嘉禮、吉夕、<i class="hl">合卺</i></td><td>指結婚。以一瓠分為兩瓢叫「卺」，新婚時夫婦各執一瓢而飲，故稱結婚為「合卺」。</td></tr>
+      <tr><td class="wd"><i class="hl">文定</i></td><td>訂婚。「文」為禮金，問名後卜吉，則納幣為定，是為訂婚。</td></tr>
+      <tr><td class="wd"><i class="hl">于歸</i></td><td>古時女以男為家，故出嫁曰「于歸」。</td></tr>
+      <tr><td class="nm" rowspan="4">喜慶及<br>普通應酬</td><td class="wd"><i class="hl">桃觴、桃樽</i></td><td>祝壽的酒席。</td></tr>
+      <tr><td class="wd"><i class="hl">湯餅</i></td><td>生兒三日宴客，是為湯餅筵。</td></tr>
+      <tr><td class="wd">彌月之慶</td><td>嬰兒出生後滿月宴客。</td></tr>
+      <tr><td class="wd">臺光</td><td>「臺」是對人的敬稱，「光」指光臨。</td></tr>
+      <tr><td class="nm" rowspan="2">喜慶送禮請<br>收受之敬語</td><td class="wd"><i class="hl">哂納、哂存、莞存、莞納</i></td><td>送長輩、長官之禮用。（「哂」、「莞」都有微笑之意）</td></tr>
+      <tr><td class="wd">莞收、笑納</td><td>送平輩之禮用。</td></tr>
+    </table></div>
     <h2 class="sec">應用文——對聯</h2>
     <div class="tree"><span class="k">對聯的格式</span>
       <div class="t2">1. <b>字數要相同</b>：對聯句式可長可短，而上下兩聯的字數，必須相同。</div>
