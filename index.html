@@ -36,7 +36,7 @@ h2.sec{margin:22px 0 8px;font-size:1.05rem;color:var(--brand2);letter-spacing:.1
 .mtab td.nm{background:var(--chip);white-space:nowrap;text-align:center;font-weight:900}
 .mtab td.nm .sym{display:block;color:var(--brand);font-size:1.25rem;margin-top:2px;font-weight:900}
 .mtab td.wd{background:#fffdf8;white-space:nowrap;text-align:center;color:var(--muted);font-size:.82rem}
-.mtab td .ln{display:block;margin:3px 0}
+.mtab td .ln{display:block;margin:3px 0}.mtab td .nt{display:block;margin:6px 0 0;padding:4px 7px;background:#fffdf8;border-left:3px solid var(--brand);border-radius:3px;font-size:.78rem;line-height:1.5;color:var(--muted)}.mtab td .nt b{color:var(--brand);margin-right:4px}
 .mtab td.thumb{text-align:center;vertical-align:middle;background:#fffdf8;color:var(--muted)}
 .mtab img.ti{height:88px;max-width:96px;object-fit:contain;border:1px solid var(--line);border-radius:6px;background:#fff}
 .mtab td.nm img.gt{display:block;margin:6px auto 0;width:60px;border:1px solid var(--line);border-radius:6px;background:#fff}
@@ -972,39 +972,53 @@ function rep(t,big){
 
 /* ===== B1 學習重點資料 ===== */
 const MARKS=[
-{nm:"句號",sym:"。",wd:"占一格",uses:[
- {u:"用於一個語意完整的句末，不用於疑問句、感嘆句。",ex:"我們不禁嘆息大笑，同樣的一件衣料，每個人卻有不同的感覺<i class=hl>。</i>"}]},
-{nm:"逗號",sym:"，",wd:"占一格",uses:[
- {u:"用於隔開複句內各分句。",ex:"人人的欣賞觀點不盡相同<i class=hl>，</i>那是和個人的性格與生活環境有關。"}]},
-{nm:"頓號",sym:"、",wd:"占一格",uses:[
- {u:"用於並列連用的詞、語之間。",ex:"學校是一層樓建築，所有教室<i class=hl>、</i>廁所皆是無障礙。"},
- {u:"標示條列次序的文字之後。",ex:"一<i class=hl>、</i>忠勇為愛國之本。二<i class=hl>、</i>孝順為齊家之本。"}]},
-{nm:"分號",sym:"；",wd:"占一格",uses:[
+{nm:"句號",sym:"。",wd:"占一格",nt:["用於意思已完足的句末，不用於疑問句、感嘆句。"],uses:[
+ {u:"用於單句之末。",ex:"請幫我買一份報紙<i class=hl>。</i>"},
+ {u:"用於複句之末。",ex:"這種謙抑，這種不居功，科學史中是少見的<i class=hl>。</i><br>我們不禁嘆息大笑，同樣的一件衣料，每個人卻有不同的感覺<i class=hl>。</i>"}]},
+{nm:"逗號",sym:"，",wd:"占一格",nt:["標明句子裡該停頓、分開的符號。用在語意未完、語氣未結束時。"],uses:[
+ {u:"用於隔開複句內各分句。",ex:"請陶冶我的兒子<i class=hl>，</i>使他的心地純潔<i class=hl>，</i>目標高超。<br>人人的欣賞觀點不盡相同<i class=hl>，</i>那是和個人的性格與生活環境有關。"},
+ {u:"用於標示語氣的停頓。",ex:"休息<i class=hl>，</i>是為了走更長遠的路。"}]},
+{nm:"頓號",sym:"、",wd:"占一格",nt:["標明語氣停頓最短暫的符號。"],uses:[
+ {u:"用於並列連用的詞、語之間。",ex:"所謂的暑假，也幾乎是冰棒<i class=hl>、</i>冰水或刨冰的代名詞。<br>學校是一層樓建築，所有教室<i class=hl>、</i>廁所皆是無障礙。"},
+ {u:"標示條列次序的文字之後。",ex:"「青年守則」的條文如下：一<i class=hl>、</i>忠勇為愛國之本。二<i class=hl>、</i>孝順為齊家之本。……"}]},
+{nm:"分號",sym:"；",wd:"占一格",nt:["分開複句中平列句子的符號，用於各組平列的句子之間。"],uses:[
  {u:"用於分開複句中平列的句子。",ex:"燕子去了，有再來的時候<i class=hl>；</i>楊柳枯了，有再青的時候<i class=hl>；</i>桃花謝了，有再開的時候。"}]},
 {nm:"冒號",sym:"：",wd:"占一格",uses:[
- {u:"總起下文。",ex:"讀書時應注意四件事<i class=hl>：</i>眼到、口到、手到、心到。"},
- {u:"舉例說明上文。",ex:"成功的企業家，必定具備過人之處，如<i class=hl>：</i>堅毅奮發的精神、周密詳備的思慮、超人一等的企業眼光。"}]},
+ {u:"總起下文：列舉人、事、物。",ex:"臺灣平地最常見的三種鳥類<i class=hl>：</i>白頭翁、綠繡眼、麻雀，被人們慣稱為「城市三俠」。<br>讀書時應注意四件事<i class=hl>：</i>眼到、口到、手到、心到。"},
+ {u:"總起下文：提出引語。",ex:"俗諺說<i class=hl>：</i>「病從口入，禍從口出。」"},
+ {u:"總起下文：書信稱呼之後。",ex:"親愛的女兒<i class=hl>：</i>忙碌的日子總是過得特別快，一轉眼你就要從國中畢業了。"},
+ {u:"總起下文：標題。",ex:"<span class=pn>孔門</span>四科<i class=hl>：</i>德行、言語、政事、文學。"},
+ {u:"舉例說明上文。",ex:"這家店販賣的東西非常多元，例如<i class=hl>：</i>服飾、玩具、食品等。<br>成功的企業家，必定具備過人之處，如<i class=hl>：</i>堅毅奮發的精神、周密詳備的思慮、超人一等的企業眼光。"}]},
 {nm:"問號",sym:"？",wd:"占一格",uses:[
- {u:"用於疑問句之後。",ex:"酒醉駕車肇事的人是有心殺人嗎<i class=hl>？</i>"},
- {u:"用於歷史人物生死或事件始末之時間不詳。",ex:"顏之推（西元 531 ～<i class=hl>？</i>）字介，北朝齊臨沂人。"}]},
-{nm:"引號",sym:"「」",wd:"前後各占一格",uses:[
- {u:"用於標示說話、引語，先用單引號，單引號內再用雙引號。",ex:"老師說：<i class=hl>「</i>你們要記住國父說的<i class=hl>『</i>青年要立志做大事，不要做大官<i class=hl>』</i>這句話。<i class=hl>」</i>"},
- {u:"用於標示出特別指稱或強調的詞。",ex:"毋庸置疑的是他遇到了<i class=hl>「</i>貴人<i class=hl>」</i>。"}]},
-{nm:"夾注號",sym:"（）或——",wd:"（）前後各占一格；——前後各占兩格",uses:[
- {u:"在行文中純屬注釋上文的，多半用（　）。",ex:"蘇軾，字子瞻，號東坡居士，宋眉州<i class=hl>（</i>今四川省眉山縣<i class=hl>）</i>人。"},
- {u:"在行文中為補充說明而語氣可以聯貫的，多半用——。",ex:"這種密碼<i class=hl>——</i>有人說是人生的密碼<i class=hl>——</i>是很難解開的。"}]},
-{nm:"刪節號",sym:"……",wd:"占二格",uses:[
- {u:"節略原文。",ex:"劉鶚在黃河結冰記中，「看那河身不過百十丈寬，<i class=hl>……</i>」這一段，便是記事文的格式。"},
- {u:"語句未完、意思未盡。",ex:"辭典則可以告訴我們許多詞語，包括人名、地名、制度、成語、典故<i class=hl>……</i>的涵義。"},
- {u:"表示語句斷斷續續。",ex:"活人同死人也差<i class=hl>……</i>差<i class=hl>……</i>差不多。"}]},
-{nm:"破折號",sym:"——",wd:"占二格",uses:[
- {u:"語意的轉變。",ex:"重要的是<i class=hl>——</i>人與人之間，應該有彼此容忍和尊重對方的看法與觀點的雅量。"},
- {u:"聲音的延續。",ex:"鳴<i class=hl>——</i>鳴<i class=hl>——</i>鳴<i class=hl>——</i>，警報的聲音又響起來了。"},
- {u:"行文中為補充說明某詞語之處，而此說明後語氣需要停頓。",ex:"這件事在經過這麼多波折後，終於逐漸有了轉機<i class=hl>——</i>真可謂倒吃甘蔗<i class=hl>——</i>漸入佳境。"}]},
+ {u:"用於疑問句之後：懷疑。",ex:"那麼用功的學生，會考不上學校<i class=hl>？</i>"},
+ {u:"用於疑問句之後：發問。",ex:"先生，請問您從哪裡來<i class=hl>？</i><br>酒醉駕車肇事的人是有心殺人嗎<i class=hl>？</i>"},
+ {u:"用於疑問句之後：反問。",ex:"冬天來了，春天還會遠嗎<i class=hl>？</i>"},
+ {u:"標示歷史人物生死或事件始末之時間不詳。",ex:"<span class=pn>張岱</span>（西元 1597 ～<i class=hl>？</i>），字宗子，一字石公，號陶庵。<br><span class=pn>顏之推</span>（西元 531 ～<i class=hl>？</i>）字介，北朝<span class=pn>齊</span> <span class=pn>臨沂</span>人。"}]},
+{nm:"驚嘆號",sym:"！",wd:"占一格",nt:["標明感嘆語氣及加重語氣。"],uses:[
+ {u:"用於獨立使用的嘆詞之後。",ex:"喂<i class=hl>！</i>你是誰？"},
+ {u:"用於感嘆句之後。",ex:"美麗的夏夜呀<i class=hl>！</i>／涼爽的夏夜呀<i class=hl>！</i>"},
+ {u:"用於命令句之後。",ex:"今天，我就要你作主<i class=hl>！</i>"},
+ {u:"用於強烈的祈使句之後。",ex:"求求您放了我吧<i class=hl>！</i>"},
+ {u:"用於強烈的反詰疑問句之後。",ex:"事情已經這麼嚴重了，你還不肯罷休<i class=hl>！</i>"},
+ {u:"用於加重語氣的陳述句之後。",ex:"嗟哉斯徒輩，其心不如禽<i class=hl>！</i><br>你還吃月光餅<i class=hl>！</i>再吃，臉長得更大更扁，雀斑就跟餅上的芝麻那麼多了。"}]},
+{nm:"引號",sym:"「」 或 『』",wd:"前後各占一格",nt:["引用中若要再引用，則使用雙引號『　』。","「引語」句尾的標點符號應標在下引號前；但如果「引語」是全句結構的一部分時，下引號前通常不加標點符號，例如：所謂忠恕，也就是「盡己之心，推己及人」的意思。","標示特別指稱與特別強調的詞語，下引號前不加標點符號。"],uses:[
+ {u:"用於標示說話。",ex:"我說：<i class=hl>「</i>早安。<i class=hl>」</i>他也笑著回答：<i class=hl>「</i>早安。<i class=hl>」</i>"},
+ {u:"用於標示引語。",ex:"<span class=pn>陸放翁</span>有一聯詩句：<i class=hl>「</i>傳呼快馬迎新月，卻上輕輿趁晚涼。<i class=hl>」</i><br>老師說：<i class=hl>「</i>你們要記住<span class=pn>國父</span>說的<i class=hl>『</i>青年要立志做大事，不要做大官<i class=hl>』</i>這句話。<i class=hl>」</i>"},
+ {u:"用於標示特別指稱的詞語。",ex:"<i class=hl>「</i>姹紫嫣紅<i class=hl>」</i>是形容花開得鮮豔嬌美。<br>毋庸置疑的是他遇到了<i class=hl>「</i>貴人<i class=hl>」</i>。"},
+ {u:"用於標示特別強調的詞語。",ex:"你的<i class=hl>「</i>好意<i class=hl>」</i>，實在讓我不敢領教。"}]},
+{nm:"夾注號",sym:"（）或 ——",wd:"（）前後各占一格；—— 上下各占一格",nt:["此符號前半不能在一行之末，後半不能在一行之首。"],uses:[
+ {u:"在行文中純屬注釋上文的，多半用（　）。",ex:"<span class=pn>周敦頤</span>，字茂叔，<span class=pn>北宋</span> <span class=pn>道州</span> <span class=pn>營道</span><i class=hl>（</i>今<span class=pn>湖南省</span> <span class=pn>永州市</span> <span class=pn>道縣</span><i class=hl>）</i>人。<br><span class=pn>蘇軾</span>，字子瞻，號東坡居士，<span class=pn>宋</span> <span class=pn>眉州</span><i class=hl>（</i>今<span class=pn>四川省</span> <span class=pn>眉山縣</span><i class=hl>）</i>人。"},
+ {u:"為補充說明，並使上下文氣可以連貫的，多半用 ——。",ex:"現代社會生活步調快速，平常上班上學的日子<i class=hl>——</i>不必是大家庭<i class=hl>——</i>在一張乾乾淨淨的餐桌上用早餐，已經近乎神話了。<br>這種密碼<i class=hl>——</i>有人說是人生的密碼<i class=hl>——</i>是很難解開的。"}]},
+{nm:"破折號",sym:"——",wd:"占二格",nt:["書寫時占兩格。"],uses:[
+ {u:"語意的轉變。",ex:"我實在不贊成這次的提案<i class=hl>——</i>也罷，那就依照你們的意思吧！<br>重要的是<i class=hl>——</i>人與人之間，應該有彼此容忍和尊重對方的看法與觀點的雅量。"},
+ {u:"聲音的延續。",ex:"鳴<i class=hl>——</i>鳴<i class=hl>——</i>，空襲警報又響起來了。"},
+ {u:"行文中補充說明某詞語之處，而此說明後語氣需要停頓。",ex:"當兵的時候，我在<span class=pn>陸光國劇隊</span>遇見了生平最嚴酷的師父，人人口中的周瘋子<i class=hl>——</i><span class=pn>周正榮</span>師父。<br>這件事在經過這麼多波折後，終於逐漸有了轉機<i class=hl>——</i>真可謂倒吃甘蔗<i class=hl>——</i>漸入佳境。"}]},
+{nm:"刪節號",sym:"……",wd:"占二格",nt:["書寫時占兩格，每格寫三點。"],uses:[
+ {u:"節略原文。",ex:"「白日依山盡<i class=hl>……</i>」這首唐詩，幾乎每個中國人都能琅琅上口。<span class=pn>王之渙</span>用這二十個字，描繪一幅壯麗景象，讓人在腦海中烙下永恆印象。<br><span class=pn>劉鶚</span>在<span class=bn>黃河結冰記</span>中，「看那河身不過百十丈寬，<i class=hl>……</i>」這一段，便是記事文的格式。"},
+ {u:"用於語句未完、意思未盡。",ex:"高中背的書包、穿的制服，一疊疊相本、不忍棄置的舊衣<i class=hl>……</i>，在這空間裡完好的存在著。<br>辭典則可以告訴我們許多詞語，包括人名、地名、制度、成語、典故<i class=hl>……</i>的涵義。"},
+ {u:"表示語句斷斷續續。",ex:"警察追了幾百公尺，終於捉住那個偷皮包的嫌疑犯，當警察問他是不是偷了紅皮包時，他上氣不接下氣的說：「我<i class=hl>……</i>我<i class=hl>……</i>是什麼樣的<i class=hl>……</i>的人，怎麼可能<i class=hl>……</i>做出這<i class=hl>……</i>這<i class=hl>……</i>這種事呢？不<i class=hl>……</i>不信<i class=hl>……</i>你搜啊！」<br>活人同死人也差<i class=hl>……</i>差<i class=hl>……</i>差不多。"}]},
 {nm:"專名號",sym:"＿",wd:"長度與名稱齊",uses:[
  {u:"用於人名、族名、國名、地名、路線名、機構名、建築名、時代名、山川、湖泊。直行標在專名左旁，橫行標在專名之下。",ex:"<span class=pn>孫中山</span>先生、<span class=pn>阿美族</span>、<span class=pn>中華民國</span>、<span class=pn>臺北市</span>、<span class=pn>中山高速公路</span>、<span class=pn>中日航線</span>、<span class=pn>教育部</span>、<span class=pn>漢朝</span>、<span class=pn>阿里山</span>、<span class=pn>濁水溪</span>、<span class=pn>伊甸基金會</span>"}]},
-{nm:"驚嘆號",sym:"！",wd:"占一格",uses:[
- {u:"用於感嘆語氣及加重語氣的詞、語、句之後。",ex:"你還吃月光餅<i class=hl>！</i>再吃，臉長得更大更扁，雀斑就跟餅上的芝麻那麼多了。"}]},
 {nm:"書名號",sym:"～ 或 〈〉《》",wd:"波浪線長度與書名齊；〈〉《》前後各占一格",uses:[
  {u:"波浪線：直行標在書名左方，橫行標在書名之下。",ex:"<span class=bn>史記</span>、<span class=bn>項羽本紀</span>、<span class=bn>屍速列車</span>、<span class=bn>浮生六記</span>、<span class=bn>清明上河圖</span>、<span class=bn>臺灣旅遊地圖</span>"},
  {u:"〈　〉多用於篇名，《　》多用於書名。",ex:"<i class=hl>《</i>史記<i class=hl>》</i>、<i class=hl>〈</i>項羽本紀<i class=hl>〉</i>、<i class=hl>《</i>史記．項羽本紀<i class=hl>》</i>、<i class=hl>《</i>屍速列車<i class=hl>》</i>、<i class=hl>《</i>終於等到你<i class=hl>》</i>、<i class=hl>〈</i>清明上河圖<i class=hl>〉</i>、<i class=hl>《</i>臺灣旅遊地圖<i class=hl>》</i>"}]},
@@ -1028,7 +1042,7 @@ const CMP=[
   $("#marks").innerHTML='<tr><th>名稱</th><th>書寫方式</th><th>使用方式</th><th>例句</th></tr>'+
     MARKS.map(m=>'<tr><td class="nm">'+m.nm+'<span class="sym">'+m.sym+'</span></td>'+
       '<td class="wd">'+m.wd.replace(/；/g,"；<br>")+'</td>'+
-      '<td>'+m.uses.map((u,i)=>'<span class="ln">'+num(m,i)+u.u+'</span>').join("")+'</td>'+
+      '<td>'+m.uses.map((u,i)=>'<span class="ln">'+num(m,i)+u.u+'</span>').join("")+(m.nt?m.nt.map(n=>'<span class="nt"><b>註</b>'+n+'</span>').join(""):"")+'</td>'+
       '<td>'+m.uses.map((u,i)=>'<span class="ln">'+num(m,i)+u.ex+'</span>').join("")+'</td></tr>').join("");
   $("#cmptab").innerHTML=CMP.map((r,i)=>{
     if(i===0)return '<tr>'+r.map(c=>'<th>'+c+'</th>').join("")+'</tr>';
