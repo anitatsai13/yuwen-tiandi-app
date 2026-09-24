@@ -36,7 +36,33 @@ h2.sec{margin:22px 0 8px;font-size:1.05rem;color:var(--brand2);letter-spacing:.1
 .mtab td.nm{background:var(--chip);white-space:nowrap;text-align:center;font-weight:900}
 .mtab td.nm .sym{display:block;color:var(--brand);font-size:1.25rem;margin-top:2px;font-weight:900}
 .mtab td.wd{background:#fffdf8;white-space:nowrap;text-align:center;color:var(--muted);font-size:.82rem}
-.mtab td .ln{display:block;margin:3px 0}.mtab td .nt{display:block;margin:6px 0 0;padding:4px 7px;background:#fffdf8;border-left:3px solid var(--brand);border-radius:3px;font-size:.78rem;line-height:1.5;color:var(--muted)}.mtab td .nt b{color:var(--brand);margin-right:4px}
+.mtab td .ln{display:block;margin:3px 0}
+.sbar{display:flex;gap:6px;margin:0 0 10px;flex-wrap:wrap}
+.sbar input{flex:1 1 220px;min-width:0;padding:9px 12px;border:1px solid var(--line);border-radius:10px;
+  background:var(--card);color:var(--ink);font-size:.95rem;font-family:inherit}
+.sbar input:focus{outline:2px solid var(--brand);outline-offset:1px}
+.sbtn{padding:9px 14px;border:1px solid var(--line);border-radius:10px;background:var(--brand);color:#fff;
+  font-weight:700;cursor:pointer;font-family:inherit;font-size:.9rem;white-space:nowrap}
+.sbtn.ghost{background:var(--card);color:var(--muted)}
+.sbtn:hover{filter:brightness(1.08)}
+.sres{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:12px}
+.sres .shead{font-weight:900;color:var(--brand);margin-bottom:8px;font-size:.9rem}
+.sres .sgrp{font-weight:900;margin:10px 0 4px;color:var(--brand2);font-size:.86rem;
+  border-bottom:1px dashed var(--line);padding-bottom:3px}
+.sres .sitem{display:block;width:100%;text-align:left;background:var(--gold);border:1px solid var(--line);
+  border-radius:8px;padding:7px 10px;margin:5px 0;cursor:pointer;font-family:inherit;font-size:.86rem;
+  line-height:1.6;color:var(--ink)}
+.sres .sitem:hover{border-color:var(--brand)}
+.sres .sitem .swhere{display:block;color:var(--muted);font-size:.78rem;margin-bottom:2px}
+.sres .qcard{background:#fffdf8;border:1px solid var(--line);border-left:3px solid var(--brand2);
+  border-radius:8px;padding:8px 10px;margin:5px 0;font-size:.86rem;line-height:1.7}
+.sres .qcard .qa{color:var(--ok);font-weight:900}
+.sres .qcard .qe{color:var(--muted);display:block;margin-top:3px}
+.sres mark{background:var(--mark);color:var(--brand);font-weight:900;border-radius:3px;padding:0 2px}
+.sres .snone{color:var(--muted);padding:6px 2px}
+@keyframes secflash{0%,100%{background:transparent}25%,75%{background:var(--mark)}}
+.secflash{animation:secflash 1.6s ease-in-out}
+.mtab td .nt{display:block;margin:6px 0 0;padding:4px 7px;background:#fffdf8;border-left:3px solid var(--brand);border-radius:3px;font-size:.78rem;line-height:1.5;color:var(--muted)}.mtab td .nt b{color:var(--brand);margin-right:4px}
 .mtab td.thumb{text-align:center;vertical-align:middle;background:#fffdf8;color:var(--muted)}
 .mtab img.ti{height:88px;max-width:96px;object-fit:contain;border:1px solid var(--line);border-radius:6px;background:#fff}
 .mtab td.nm img.gt{display:block;margin:6px auto 0;width:60px;border:1px solid var(--line);border-radius:6px;background:#fff}
@@ -123,6 +149,13 @@ footer{text-align:center;color:var(--muted);font-size:.75rem;margin-top:34px;let
   <div class="sub" id="subT">學習重點＋題庫測驗</div>
 </header>
 <div class="units" id="unitChips"></div>
+  <div class="sbar">
+    <input id="sq" type="search" placeholder="搜尋全站…例如：破瓜、蠶頭雁尾、倒裝句、豆蔻" autocomplete="off">
+    <button id="sgo" class="sbtn">🔍 搜尋</button>
+    <button id="sx" class="sbtn ghost" hidden>✕ 清除</button>
+  </div>
+  <div id="sres" class="sres" hidden></div>
+  
 <div class="tabs">
   <button class="tab active" data-tab="learn">📚 學習重點</button>
   <button class="tab" data-tab="quiz">📝 測驗</button>
@@ -828,12 +861,12 @@ footer{text-align:center;color:var(--muted);font-size:.75rem;margin-top:34px;let
       <tr><th>季節</th><th>農曆月</th><th>別　稱</th><th>關鍵字詞</th><th>詩詞舉例</th></tr>
       <tr><td class="nm" rowspan="3">春</td><td class="wd">孟・一月</td><td class="wd">正月、元月</td>
         <td rowspan="3">東風、楊柳風、花信風、杏花雨、鶯、燕、桃花、李花、杏花、杜鵑花、梨花、櫻花、楊柳、<b>斗杓東指</b>、青春</td>
-        <td rowspan="3"><span class="ln">1. 尋芳陌上<i class="hl">花如錦</i>，折得<i class="hl">東風</i>第一枝。</span><span class="ln">2. 沾衣欲溼<i class="hl">杏花雨</i>，吹面不寒<i class="hl">楊柳風</i>。</span><span class="ln">3. 千里<i class="hl">鶯啼綠映紅</i>，水村山郭酒旗風。</span></td></tr>
+        <td rowspan="3"><span class="ln">1. 尋芳陌上<i class="hl">花如錦</i>，折得<i class="hl">東風</i>第一枝。</span><span class="ln">2. 沾衣欲溼<i class="hl">杏花雨</i>，吹面不寒<i class="hl">楊柳風</i>。</span><span class="ln">3. 千里<i class="hl">鶯啼綠映紅</i>，水村山郭酒旗風。</span><span class="ln">4. 山光照檻水繞廊，舞雩<i class="hl">歸詠春風</i>香。</span></td></tr>
       <tr><td class="wd">仲・二月</td><td class="wd">花月、杏月</td></tr>
       <tr><td class="wd">季・三月</td><td class="wd">暮春、桃月</td></tr>
       <tr><td class="nm" rowspan="3">夏</td><td class="wd">孟・四月</td><td class="wd">初夏、梅月</td>
         <td rowspan="3">南風、薰風、梅雨、蟬、螢、蛙、黃梅、荷花（菱荷、菡萏、芙蓉、芙蕖、蓮花）、桑、稻花、菖蒲、<b>斗杓南指</b></td>
-        <td rowspan="3"><span class="ln">1. <i class="hl">黃梅時節</i>家家雨，青草池塘處處<i class="hl">蛙</i>。</span><span class="ln">2. 接天蓮葉無窮碧，映日<i class="hl">荷花</i>別樣紅。</span><span class="ln">3. 風蒲獵獵小池塘，過雨<i class="hl">荷花</i>滿院香，<i class="hl">沉李浮瓜</i>冰雪涼。</span></td></tr>
+        <td rowspan="3"><span class="ln">1. <i class="hl">黃梅時節</i>家家雨，青草池塘處處<i class="hl">蛙</i>。</span><span class="ln">2. 接天蓮葉無窮碧，映日<i class="hl">荷花</i>別樣紅。</span><span class="ln">3. 納涼時，波漲沙，滿湖香<i class="hl">芰荷</i>兼<i class="hl">菡萏</i>。</span><span class="ln">4. 風蒲獵獵小池塘，過雨<i class="hl">荷花</i>滿院香，<i class="hl">沉李浮瓜</i>冰雪涼。</span></td></tr>
       <tr><td class="wd">仲・五月</td><td class="wd">午月、蒲月</td></tr>
       <tr><td class="wd">季・六月</td><td class="wd">暑月、荷月</td></tr>
       <tr><td class="nm" rowspan="3">秋</td><td class="wd">孟・七月</td><td class="wd">霜月、瓜月</td>
@@ -851,56 +884,56 @@ footer{text-align:center;color:var(--muted);font-size:.75rem;margin-top:34px;let
     <h2 class="sec">典故判讀　節慶</h2>
     <div class="mtabwrap"><table class="mtab" style="min-width:700px">
       <tr><th>節慶</th><th>季節</th><th>日　期</th><th>習　俗</th><th>相關詩詞</th></tr>
-      <tr><td class="nm">春　節</td><td class="wd" rowspan="4">春</td><td class="wd">農曆一月一日</td><td>貼春聯、燃放爆竹、祭祖、拜年、團圓、飲屠蘇酒</td><td><span class="ln">1. <i class="hl">爆竹聲中一歲除</i>，春風送暖入<i class="hl">屠蘇</i>。千門萬戶曈曈日，總把<i class="hl">新桃換舊符</i>。</span><span class="ln">2. 聽燒<i class="hl">爆竹</i>童心在，看換<i class="hl">桃符</i>老興偏。</span></td></tr>
+      <tr><td class="nm">春　節</td><td class="wd" rowspan="4">春</td><td class="wd">農曆一月一日</td><td>貼春聯、燃放爆竹、祭祖、拜年、團圓、飲屠蘇酒</td><td><span class="ln">1. <i class="hl">爆竹聲中一歲除</i>，春風送暖入<i class="hl">屠蘇</i>。千門萬戶曈曈日，總把<i class="hl">新桃換舊符</i>。<span class="nt"><b>註</b>部分課本印作「<b>東風</b>送暖入屠蘇」「<b>爭插</b>新桃換舊符」，屬異文。</span></span><span class="ln">2. 聽燒<i class="hl">爆竹</i>童心在，看換<i class="hl">桃符</i>老興偏。</span></td></tr>
       <tr><td class="nm">元宵節</td><td class="wd">農曆一月十五日</td><td>吃元宵、猜燈謎、掛燈、賞燈、賽燈<span class="nt"><b>註</b>別稱「上元節」。</span></td><td><span class="ln">1. 去年<i class="hl">元夜</i>時，花市<i class="hl">燈如晝</i>。</span><span class="ln">2. <i class="hl">東風夜放花千樹</i>，更吹落、星如雨。</span></td></tr>
       <tr><td class="nm">清明節</td><td class="wd">國曆四月四～六日<br>其中一天</td><td>踏青、植樹、掃墓、祭祖</td><td><i class="hl">清明時節</i>雨紛紛，路上行人欲斷魂。借問酒家何處有，牧童遙指杏花村。</td></tr>
       <tr><td class="nm">寒食節</td><td class="wd">清明節前一兩天</td><td>不生火煮食、晚上不點燈<span class="nt"><b>註</b>到了清代，清明節與寒食節的習俗已不區分。</span></td><td>春城無處不飛花，<i class="hl">寒食</i>東風御柳斜。</td></tr>
       <tr><td class="nm">端午節</td><td class="wd">夏</td><td class="wd">農曆五月五日</td><td>掛艾草、插菖蒲、包粽子、龍舟競渡、飲雄黃酒</td><td><span class="ln">1. <i class="hl">競渡</i>深悲千載冤，忠魂一去詎能還。</span><span class="ln">2. <i class="hl">五月</i>榴花妖豔烘，綠楊帶雨垂垂重。<i class="hl">五色新絲纏角粽</i>。</span></td></tr>
       <tr><td class="nm">七　夕</td><td class="wd" rowspan="3">秋</td><td class="wd">農曆七月七日</td><td>乞巧、拜七娘媽</td><td><span class="ln">1. 纖雲弄巧，飛星傳恨，<i class="hl">銀漢</i>迢迢暗度。</span><span class="ln">2. 未會<i class="hl">牽牛</i>意若何？須邀<i class="hl">織女</i>弄金梭。年年<i class="hl">乞巧</i>與人間，不道人間巧已多。</span></td></tr>
-      <tr><td class="nm">中元節</td><td class="wd">農曆七月十五日</td><td>中元普渡、放河燈、搶孤<span class="nt"><b>註</b>別稱「鬼節」，佛教傳入後又以此日為「盂蘭盆節」。</span></td><td>道場<i class="hl">普渡</i>妥幽魂，原有<i class="hl">盂蘭</i>古意存。</td></tr>
-      <tr><td class="nm">中秋節</td><td class="wd">農曆八月十五日</td><td>團圓、賞月、吃月餅、吃柚子</td><td><span class="ln">1. 暮雲收盡溢清寒，<i class="hl">銀漢</i>無聲轉<i class="hl">玉盤</i>。此生此夜不長好，明月明年何處看？</span><span class="ln">2. <i class="hl">平分秋色一輪滿</i>，長伴雲衢千里明。</span></td></tr>
+      <tr><td class="nm">中元節</td><td class="wd">農曆七月十五日</td><td>中元普渡、放河燈、搶孤<span class="nt"><b>註</b>別稱「鬼節」，佛教傳入後又以此日為「盂蘭盆節」。</span></td><td><span class="ln">1. 道場<i class="hl">普渡</i>妥幽魂，原有<i class="hl">盂蘭</i>古意存。</span><span class="ln">2. 明滅燈光隨水轉，輝煌火炬繞街旋。<i class="hl">鬼餘爭食</i>齊環向，跳躍高臺欲奪先。</span></td></tr>
+      <tr><td class="nm">中秋節</td><td class="wd">農曆八月十五日</td><td>團圓、賞月、吃月餅、吃柚子</td><td><span class="ln">1. 暮雲收盡溢清寒，<i class="hl">銀漢</i>無聲轉<i class="hl">玉盤</i>。此生此夜不長好，明月明年何處看？</span><span class="ln">2. 皓魄當空<i class="hl">寶鏡</i>升，雲間仙籟寂無聲。<i class="hl">平分秋色一輪滿</i>，長伴雲衢千里明。</span></td></tr>
       <tr><td class="nm">重陽節</td><td class="wd">秋</td><td class="wd">農曆九月九日</td><td>敬老、登高、佩帶茱萸、飲菊花酒</td><td><span class="ln">1. 遙知兄弟<i class="hl">登高</i>處，遍插<i class="hl">茱萸</i>少一人。</span><span class="ln">2. 強欲<i class="hl">登高</i>去，無人送<i class="hl">酒</i>來。</span></td></tr>
-      <tr><td class="nm">除　夕</td><td class="wd">冬</td><td class="wd">農曆十二月最末日</td><td>圍爐、守歲、吃年夜飯、壓歲錢</td><td>故鄉今夜思千里，霜鬢<i class="hl">明朝又一年</i>。</td></tr>
+      <tr><td class="nm">除　夕</td><td class="wd">冬</td><td class="wd">農曆十二月最末日</td><td>圍爐、守歲、吃年夜飯、壓歲錢</td><td><span class="ln">1. 多事關心偶不眠，隨人也當<i class="hl">守殘年</i>。不須更說新春事，<i class="hl">來歲今宵在目前</i>。</span><span class="ln">2. 故鄉今夜思千里，霜鬢<i class="hl">明朝又一年</i>。</span></td></tr>
     </table></div>
 
     <h2 class="sec">典故判讀　人物</h2>
     <div class="tree">詠人、詠物的作品能使我們了解人物事蹟形象，更能體會作品傳達的旨趣。<b>重要事蹟</b>是判讀的依據。</div>
     <div class="mtabwrap"><table class="mtab" style="min-width:700px">
       <tr><th>人物</th><th>年代</th><th>重要事蹟</th><th>相關作品關鍵字</th></tr>
-      <tr><td class="nm">孔子</td><td class="wd">春秋</td><td>名<b>丘</b>，字<b>仲尼</b>，<span class="pn">魯國</span>人。曾作<span class="bn">春秋</span>，是<b>儒家</b>學說的代表人物，以「<b>仁</b>」為中心思想。曾周遊列國，並在<span class="pn">洙水</span>和<span class="pn">泗水</span>間教授弟子，教育上主張<b>有教無類、因材施教、學思並重</b>，被後世尊為「<i class="hl">至聖先師</i>」、「<i class="hl">萬世師表</i>」。</td><td>道若江河，隨地可成<i class="hl">洙泗</i>／聖如日月，普天皆有<i class="hl">春秋</i><span class="nt"><b>註</b>「七十二株等待茂盛的杏樹」指孔子的<b>七十二位賢弟子</b>。</span></td></tr>
-      <tr><td class="nm">西施</td><td class="wd">春秋</td><td><span class="pn">越國</span>美女，曾由<span class="pn">范蠡</span>獻給<span class="pn">吳王夫差</span>。據傳西施患有心病，捧胸皺眉時更顯嫵媚，又稱「<i class="hl">捧心顰</i>」。</td><td><i class="hl">一代傾城</i>逐浪花，<i class="hl">吳宮</i>空自憶兒家。效<i class="hl">顰</i>莫笑東村女，<i class="hl">頭白溪邊尚浣紗</i>。</td></tr>
-      <tr><td class="nm">孟子</td><td class="wd">戰國</td><td>名<b>軻</b>，<span class="pn">鄒國</span>人。畢生闡揚孔子思想，提倡「<b>性善</b>」的學說，主張「<b>民貴君輕</b>」，並周遊各國勸導諸侯施行仁政，後世尊稱為「<i class="hl">亞聖</i>」。</td><td>千里而來，<i class="hl">何必曰利</i>；亦有<i class="hl">仁義</i>而已矣</td></tr>
-      <tr><td class="nm">屈原</td><td class="wd">戰國</td><td>名<b>平</b>，字<b>靈均</b>，<span class="pn">楚國</span>貴族。曾任三閭大夫，兩度被放逐，因不忍見國家淪亡，憂憤投<span class="pn">汨羅江</span>而死。創作<span class="bn">離騷</span>、<span class="bn">九歌</span>、<span class="bn">天問</span>等，是<b>楚辭</b>的代表作家、<b>愛國詩人</b>。</td><td><i class="hl">離騷</i>、<i class="hl">天問</i>、<i class="hl">汨羅</i>、<i class="hl">忠梗</i>、<i class="hl">滄浪</i>、菖蒲作觴</td></tr>
-      <tr><td class="nm">荊軻</td><td class="wd">戰國</td><td><span class="pn">衛國</span>人。受<span class="pn">燕太子丹</span>之命，與<span class="pn">秦舞陽</span>帶著夾有匕首的地圖和<span class="pn">樊於期</span>首級去刺殺<b>秦王</b>，在<span class="pn">易水</span>邊由高漸離擊筑送行。</td><td>此地<i class="hl">別燕丹</i>，<i class="hl">壯士髮衝冠</i>。昔時人已沒，今日水猶寒。／<i class="hl">易水悲歌壯士行</i></td></tr>
-      <tr><td class="nm">項羽</td><td class="wd">秦代</td><td>名<b>籍</b>，字<b>羽</b>。力能扛鼎，與叔父<span class="pn">項梁</span>起兵，入<span class="pn">咸陽</span>後燒<span class="pn">阿房宮</span>，自立為「<i class="hl">西楚霸王</i>」。在<span class="pn">垓下</span>之戰被圍<b>四面楚歌</b>，與<span class="pn">虞姬</span>訣別，戰敗後自覺無顏面對<b>江東父老</b>，於<span class="pn">烏江</span>自刎。</td><td>勝敗兵家事不期，包羞忍恥是男兒。<i class="hl">江東子弟</i>多才俊，卷土重來未可知。／八千兵散<i class="hl">楚歌聲</i>；<i class="hl">烏江</i>、<i class="hl">恥向東吳再起兵</i></td></tr>
-      <tr><td class="nm">韓信</td><td class="wd">秦代</td><td><span class="pn">淮陰</span>人。年輕時能忍<b>胯下之辱</b>，曾受<b>漂母一飯之恩</b>，後回報以<b>千金</b>。協助<span class="pn">劉邦</span>征戰天下，受封為<span class="pn">齊王</span>，後改封<span class="pn">楚王</span>，因劉邦疑其謀叛，降封<span class="pn">淮陰侯</span>，終為<span class="pn">呂后</span>所殺。</td><td><i class="hl">千金酬一飯</i>／<i class="hl">生死一知己</i>，<i class="hl">存亡兩婦人</i><span class="nt"><b>說明</b>「生死一知己」指蕭何曾薦韓信為大將軍，後又助呂后殺韓信；「存亡兩婦人」指漂母與呂后。</span></td></tr>
-      <tr><td class="nm">王昭君</td><td class="wd">西漢</td><td>名<b>嬙</b>，字<b>昭君</b>。因不肯賄賂畫師<span class="pn">毛延壽</span>而被醜化肖像，後被賜給<b>匈奴單于</b>。出塞時彈琵琶，卒後所葬稱為「<i class="hl">青塚</i>」；晉時為避諱，改稱「<b>明妃</b>」。</td><td>群山萬壑赴<span class="pn">荊門</span>，生長<i class="hl">明妃</i>尚有村。一去紫臺連朔漠，獨留<i class="hl">青塚</i>向黃昏。<i class="hl">畫圖省識春風面</i>，環珮空歸月夜魂。千載<i class="hl">琵琶</i>作<i class="hl">胡語</i>，分明怨恨曲中論。</td></tr>
-      <tr><td class="nm">諸葛亮</td><td class="wd">東漢</td><td>字<b>孔明</b>，隱居於<span class="pn">南陽</span>，人稱「<i class="hl">臥龍</i>」。<span class="pn">劉備</span>為找他請益而<b>三顧茅廬</b>，諸葛亮提出「<i class="hl">隆中對</i>」，促成天下三分。劉備逝後，繼續輔佐後主<span class="pn">劉禪</span>，所作<span class="bn">出師表</span>是傳頌千載的名作。</td><td>功蓋<i class="hl">三分國</i>，名成<i class="hl">八陣圖</i>。／<i class="hl">三顧頻煩天下計</i>，<i class="hl">兩朝開濟老臣心</i>。<i class="hl">出師未捷身先死</i>，長使英雄淚滿襟。</td></tr>
+      <tr><td class="nm">孔子</td><td class="wd">春秋</td><td>名<b>丘</b>，字<b>仲尼</b>，<span class="pn">魯國</span>人。曾作<span class="bn">春秋</span>，是<b>儒家</b>學說的代表人物，以「<b>仁</b>」為中心思想。曾周遊列國，並在<span class="pn">洙水</span>和<span class="pn">泗水</span>間教授弟子，教育上主張<b>有教無類、因材施教、學思並重</b>，被後世尊為「<i class="hl">至聖先師</i>」、「<i class="hl">萬世師表</i>」。</td><td>道若江河　隨地可成<i class="hl">洙泗</i>／聖如日月　普天皆有<i class="hl">春秋</i><br>修<i class="hl">詩</i>、<i class="hl">書</i>／作<i class="hl">春秋</i>，含笑，栽植／那<i class="hl">七十二株等待茂盛的杏樹</i><span class="nt"><b>說明</b>「七十二株等待茂盛的杏樹」是指孔子的<b>七十二位賢弟子</b>。</span></td></tr>
+      <tr><td class="nm">西施</td><td class="wd">春秋</td><td><span class="pn">越國</span>美女，曾由<span class="pn">范蠡</span>獻給<span class="pn">吳王夫差</span>。據傳西施患有心病，捧胸皺眉時更顯嫵媚，又稱「<i class="hl">捧心顰</i>」。</td><td><i class="hl">一代傾城</i>逐浪花，<i class="hl">吳宮</i>空自憶兒家。<br>效<i class="hl">顰</i>莫笑東村女，<i class="hl">頭白溪邊尚浣紗</i>。</td></tr>
+      <tr><td class="nm">孟子</td><td class="wd">戰國</td><td>名<b>軻</b>，<span class="pn">鄒國</span>人。畢生闡揚孔子思想，提倡「<b>性善</b>」的學說，主張「<b>民貴君輕</b>」，並周遊各國勸導諸侯施行仁政，後世尊稱為「<i class="hl">亞聖</i>」。</td><td>尊王言必<i class="hl">稱堯舜</i>／憂世心同切<i class="hl">孔顏</i><br>千里而來　<i class="hl">何必曰利</i>　亦有<i class="hl">仁義</i>而已矣／百世之下　莫不興起　況於<i class="hl">親炙</i>之者乎</td></tr>
+      <tr><td class="nm">屈原</td><td class="wd">戰國</td><td>名<b>平</b>，字<b>靈均</b>，<span class="pn">楚國</span>貴族。曾任三閭大夫，兩度被放逐，因不忍見國家淪亡，憂憤投<span class="pn">汨羅江</span>而死。創作<span class="bn">離騷</span>、<span class="bn">九歌</span>、<span class="bn">天問</span>等，是<b>楚辭</b>的代表作家、<b>愛國詩人</b>。</td><td><i class="hl">不肯迂迴入醉鄉</i>，乍吞<i class="hl">忠梗</i>沒<i class="hl">滄浪</i>。至今祠畔猿啼月，了了猶疑<i class="hl">恨懷王</i>。<br><i class="hl">菖蒲</i>作劍，難斷<i class="hl">離騷</i>／雄黃入酒，不解<i class="hl">天問</i></td></tr>
+      <tr><td class="nm">荊軻</td><td class="wd">戰國</td><td><span class="pn">衛國</span>人。受<span class="pn">燕太子丹</span>之命，與<span class="pn">秦舞陽</span>帶著夾有匕首的地圖和<span class="pn">樊於期</span>首級去刺殺<b>秦王</b>，在<span class="pn">易水</span>邊由高漸離擊筑送行。</td><td>此地<i class="hl">別燕丹</i>，<i class="hl">壯士髮衝冠</i>。昔時人已沒，今日水猶寒。<br><i class="hl">燕丹</i>計就問田生，<i class="hl">易水悲歌壯士行</i>。</td></tr>
+      <tr><td class="nm">項羽</td><td class="wd">秦代</td><td>名<b>籍</b>，字<b>羽</b>。力能扛鼎，與叔父<span class="pn">項梁</span>起兵，入<span class="pn">咸陽</span>後燒<span class="pn">阿房宮</span>，自立為「<i class="hl">西楚霸王</i>」。在<span class="pn">垓下</span>之戰被圍<b>四面楚歌</b>，與<span class="pn">虞姬</span>訣別，戰敗後自覺無顏面對<b>江東父老</b>，於<span class="pn">烏江</span>自刎。</td><td>勝敗兵家事不期，包羞忍恥是男兒。<i class="hl">江東子弟</i>多才俊，卷土重來未可知。<br>爭帝圖王勢已傾，八千兵散<i class="hl">楚歌聲</i>。<i class="hl">烏江</i>不是無船渡，<i class="hl">恥向東吳再起兵</i>。</td></tr>
+      <tr><td class="nm">韓信</td><td class="wd">秦代</td><td><span class="pn">淮陰</span>人。年輕時能忍<b>胯下之辱</b>，曾受<b>漂母一飯之恩</b>，後回報以<b>千金</b>。協助<span class="pn">劉邦</span>征戰天下，受封為<span class="pn">齊王</span>，後改封<span class="pn">楚王</span>，因劉邦疑其謀叛，降封<span class="pn">淮陰侯</span>，終為<span class="pn">呂后</span>所殺。</td><td>賤能忍恥卑狂少，貴乏懷忠近佞人。徒用<i class="hl">千金酬一飯</i>，不知明哲重防身。<br><i class="hl">生死一知己</i>／<i class="hl">存亡兩婦人</i><span class="nt"><b>說明</b>「生死一知己」指<b>蕭何</b>曾薦韓信為大將軍，後又助呂后設計殺害他；「存亡兩婦人」指<b>漂母</b>與<b>呂后</b>。</span></td></tr>
+      <tr><td class="nm">王昭君</td><td class="wd">西漢</td><td>名<b>嬙</b>，字<b>昭君</b>。因不肯賄賂畫師<span class="pn">毛延壽</span>而被醜化肖像，後被賜給<b>匈奴單于</b>。出塞時彈琵琶，卒後所葬稱為「<i class="hl">青塚</i>」；晉時為避諱，改稱「<b>明妃</b>」。</td><td>群山萬壑赴<span class="pn">荊門</span>，生長<i class="hl">明妃</i>尚有村。一去紫臺連朔漠，獨留<i class="hl">青冢</i>向黃昏。<i class="hl">畫圖省識春風面</i>，環珮空歸月夜魂。千載<i class="hl">琵琶</i>作<i class="hl">胡語</i>，分明怨恨曲中論。</td></tr>
+      <tr><td class="nm">諸葛亮</td><td class="wd">東漢</td><td>字<b>孔明</b>，隱居於<span class="pn">南陽</span>，人稱「<i class="hl">臥龍</i>」。<span class="pn">劉備</span>為找他請益而<b>三顧茅廬</b>，諸葛亮提出「<i class="hl">隆中對</i>」，促成天下三分。劉備逝後，繼續輔佐後主<span class="pn">劉禪</span>，所作<span class="bn">出師表</span>是傳頌千載的名作。</td><td>功蓋<i class="hl">三分國</i>，名成<i class="hl">八陣圖</i>。江流石不轉，遺恨失吞吳。<br><i class="hl">三顧頻煩天下計</i>，<i class="hl">兩朝開濟老臣心</i>。<i class="hl">出師未捷身先死</i>，長使英雄淚滿襟。</td></tr>
       <tr><td class="nm">關羽</td><td class="wd">東漢</td><td>字<b>雲長</b>。民間形象是<b>紅臉長髯</b>，手拿青龍偃月刀，騎<b>赤兔馬</b>，秉燭讀<span class="bn">春秋</span>，為「<b>忠義</b>」的象徵，後世尊稱「<i class="hl">關聖帝君</i>」。</td><td><i class="hl">赤面</i>秉赤心，騎<i class="hl">赤兔</i>追風，馳驅時無忘<i class="hl">赤帝</i>／<i class="hl">青燈</i>觀<i class="hl">青史</i>，仗<i class="hl">青龍</i>偃月，隱微處不愧<i class="hl">青天</i></td></tr>
-      <tr><td class="nm">陶淵明</td><td class="wd">東晉</td><td>名<b>潛</b>，字<b>元亮</b>，世稱<b>靖節先生</b>。曾任彭澤令，但不為<b>五斗米折腰</b>，最後解職歸去，作<span class="bn">歸去來辭</span>以明志。率性任真、性嗜酒。被尊為<b>隱逸詩人之宗</b>、<b>田園詩人之祖</b>。</td><td><i class="hl">五株門外柳</i>、<i class="hl">菊</i>、<i class="hl">懶折腰</i>、<i class="hl">白衣送酒</i>、重陽</td></tr>
-      <tr><td class="nm">楊貴妃</td><td class="wd">唐代</td><td>名<b>玉環</b>，號<b>太真</b>。身材豐腴，嗜吃<b>荔枝</b>，因受<span class="pn">唐玄宗</span>寵幸，家族成員多獲封爵。<b>安史之亂</b>後，唐玄宗不得已將其縊死於<span class="pn">馬嵬坡</span>。</td><td>一騎<i class="hl">紅塵妃子笑</i>，無人知是<i class="hl">荔枝</i>來。／<i class="hl">姊妹弟兄皆列土</i>，可憐光彩生門戶。遂令天下父母心，<i class="hl">不重生男重生女</i>。</td></tr>
-      <tr><td class="nm">李白</td><td class="wd">唐代</td><td>字<b>太白</b>，號<b>青蓮居士</b>。嗜飲酒，曾被流放<span class="pn">夜郎</span>。詩作豪放飄逸，富於想像，是<b>盛唐浪漫派詩人代表</b>。賀知章曾稱讚李白是「<i class="hl">天上謫仙人</i>」，有「<i class="hl">詩仙</i>」、「<b>詩俠</b>」的美稱。與杜甫齊名，合稱「<i class="hl">李杜</i>」。</td><td>昔年有狂客，號爾<i class="hl">謫仙人</i>。筆落驚風雨，詩成泣鬼神。<span class="nt"><b>註</b>籍貫至今成謎：<span class="pn">隴西</span>或山東、<span class="pn">青蓮鄉</span>或碎葉城。</span></td></tr>
-      <tr><td class="nm">杜甫</td><td class="wd">唐代</td><td>字<b>子美</b>，自稱<b>杜陵布衣</b>、<b>少陵野老</b>，世稱<b>杜工部</b>。後居於<span class="pn">浣花溪</span>畔<b>草堂</b>。作品反映社會現象，表現對人民的關懷，是<b>盛唐社會寫實派詩人代表</b>。詩作有「<i class="hl">詩史</i>」美譽，後世尊為「<i class="hl">詩聖</i>」。</td><td>世上瘡痍，<i class="hl">詩中聖哲</i>／<i class="hl">民間疾苦</i>，筆底波瀾<span class="nt"><b>註</b>另有「<i class="hl">詩史</i>數千言」「<i class="hl">草堂</i>三五里」之聯語。</span></td></tr>
-      <tr><td class="nm">蘇軾</td><td class="wd">北宋</td><td>字<b>子瞻</b>，自號<b>東坡居士</b>。曾被貶官至<span class="pn">黃州</span>、<span class="pn">惠州</span>、<span class="pn">儋州</span>等地。為<b>宋代豪放派詞人</b>代表。與父<span class="pn">蘇洵</span>、弟<span class="pn">蘇轍</span>合稱「<i class="hl">三蘇</i>」，同列<b>唐宋古文八大家</b>。</td><td>心似已灰之木，身如不繫之舟。問汝平生功業，<i class="hl">黃州</i> <i class="hl">惠州</i> <i class="hl">儋州</i>。／千古<i class="hl">大江東去</i></td></tr>
-      <tr><td class="nm">岳飛</td><td class="wd">北宋</td><td>宋代<b>抗金名將</b>。母親在其背上刺「<i class="hl">盡忠報國</i>」四字。高宗時被主和派<span class="pn">秦檜</span>以「<i class="hl">莫須有</i>」的罪名誣陷而死。寧宗時追封為「<span class="pn">鄂王</span>」。</td><td><i class="hl">盡忠報國</i>，<i class="hl">三字獄</i>冤千古白／仰天長嘯，一曲詞唱<i class="hl">滿江紅</i></td></tr>
+      <tr><td class="nm">陶淵明</td><td class="wd">東晉</td><td>名<b>潛</b>，字<b>元亮</b>，世稱<b>靖節先生</b>。曾任彭澤令，但不為<b>五斗米折腰</b>，最後解職歸去，作<span class="bn">歸去來辭</span>以明志。率性任真、性嗜酒。被尊為<b>隱逸詩人之宗</b>、<b>田園詩人之祖</b>。</td><td>英傑那堪屈下僚，便栽<i class="hl">門柳</i>事蕭條。鳳凰不共雞爭食，莫怪先生<i class="hl">懶折腰</i>。<br>蕭蕭<i class="hl">五株門外柳</i>，屈指重陽又，霜清蟹肥，露冷黃花瘦，<i class="hl">白衣不來琴當酒</i>。</td></tr>
+      <tr><td class="nm">楊貴妃</td><td class="wd">唐代</td><td>名<b>玉環</b>，號<b>太真</b>。身材豐腴，嗜吃<b>荔枝</b>，因受<span class="pn">唐玄宗</span>寵幸，家族成員多獲封爵。<b>安史之亂</b>後，唐玄宗不得已將其縊死於<span class="pn">馬嵬坡</span>。</td><td>長安回望繡成堆，山頂千門次第開。一騎<i class="hl">紅塵妃子笑</i>，無人知是<i class="hl">荔枝</i>來。<br><i class="hl">姊妹弟兄皆列土</i>，可憐光彩生門戶。遂令天下父母心，<i class="hl">不重生男重生女</i>。</td></tr>
+      <tr><td class="nm">李白</td><td class="wd">唐代</td><td>字<b>太白</b>，號<b>青蓮居士</b>。嗜飲酒，曾被流放<span class="pn">夜郎</span>。詩作豪放飄逸，富於想像，是<b>盛唐浪漫派詩人代表</b>。賀知章曾稱讚李白是「<i class="hl">天上謫仙人</i>」，有「<i class="hl">詩仙</i>」、「<b>詩俠</b>」的美稱。與杜甫齊名，合稱「<i class="hl">李杜</i>」。</td><td>昔年有狂客，號爾<i class="hl">謫仙人</i>。筆落驚風雨，詩成泣鬼神。<br>一貶世上已經夠落魄／再放<i class="hl">夜郎</i>毋乃太難堪／至今成謎是你的籍貫｜<span class="pn">隴西</span>或山東、<span class="pn">青蓮鄉</span>或碎葉城</td></tr>
+      <tr><td class="nm">杜甫</td><td class="wd">唐代</td><td>字<b>子美</b>，自稱<b>杜陵布衣</b>、<b>少陵野老</b>，世稱<b>杜工部</b>。後居於<span class="pn">浣花溪</span>畔<b>草堂</b>。作品反映社會現象，表現對人民的關懷，是<b>盛唐社會寫實派詩人代表</b>。詩作有「<i class="hl">詩史</i>」美譽，後世尊為「<i class="hl">詩聖</i>」。</td><td>世上瘡痍　<i class="hl">詩中聖哲</i>／<i class="hl">民間疾苦</i>　筆底波瀾<br><i class="hl">詩史</i>數千言，秋天一鵠先生骨／<i class="hl">草堂</i>三五里，春水群鷗野老心</td></tr>
+      <tr><td class="nm">蘇軾</td><td class="wd">北宋</td><td>字<b>子瞻</b>，自號<b>東坡居士</b>。曾被貶官至<span class="pn">黃州</span>、<span class="pn">惠州</span>、<span class="pn">儋州</span>等地。為<b>宋代豪放派詞人</b>代表。與父<span class="pn">蘇洵</span>、弟<span class="pn">蘇轍</span>合稱「<i class="hl">三蘇</i>」，同列<b>唐宋古文八大家</b>。</td><td>心似已灰之木，身如不繫之舟。問汝平生功業，<i class="hl">黃州</i> <i class="hl">惠州</i> <i class="hl">儋州</i>。<br>響徹銅琵　千古<i class="hl">大江東去</i>／吹殘鐵笛　一聲孤鶴南飛</td></tr>
+      <tr><td class="nm">岳飛</td><td class="wd">北宋</td><td>宋代<b>抗金名將</b>。母親在其背上刺「<i class="hl">盡忠報國</i>」四字。高宗時被主和派<span class="pn">秦檜</span>以「<i class="hl">莫須有</i>」的罪名誣陷而死。寧宗時追封為「<span class="pn">鄂王</span>」。</td><td><i class="hl">報國精忠</i>　<i class="hl">三字獄</i>冤千古白／仰天長嘯　一曲詞唱<i class="hl">滿江紅</i></td></tr>
     </table></div>
 
     <h2 class="sec">典故判讀　動植物</h2>
     <div class="tree">詠物詩藉動植物的<b>特徵</b>寄託情志，判讀時抓住該物的招牌意象即可。</div>
-    <div class="mtabwrap"><table class="mtab" style="min-width:660px">
+    <div class="mtabwrap"><table class="mtab" style="min-width:680px">
       <tr><th>類別</th><th>主題</th><th>招牌意象</th><th>詩詞舉例</th></tr>
-      <tr><td class="nm" rowspan="6">動物</td><td class="wd">蛇</td><td>伊甸園、<b>曲折蜿蜒</b>、無足而行</td><td class="wd">—</td></tr>
-      <tr><td class="wd">蚊子</td><td>微小的存在、<b>嗡嗡如掌聲</b>、吸血</td><td class="wd">—</td></tr>
-      <tr><td class="wd">蜜蜂</td><td><b>採花釀蜜</b>、辛勞無所得</td><td>不論平地與山尖，無限風光盡被占。<i class="hl">採得百花成蜜後</i>，為誰辛苦為誰甜？</td></tr>
-      <tr><td class="wd">螢火蟲</td><td><b>暗中發光</b>、弱翅、微光</td><td>的歷流光小，飄颻<i class="hl">弱翅</i>輕。恐畏無人識，<i class="hl">獨自暗中明</i>。</td></tr>
-      <tr><td class="wd">蟬（知了）</td><td><b>飲露高潔</b>、吟風、螳螂捕蟬</td><td><i class="hl">飲露</i>身何潔，<i class="hl">吟風</i>韻更長。斜陽千萬樹，無處避<i class="hl">螳螂</i>。</td></tr>
-      <tr><td class="wd">杜鵑（子規）</td><td><b>啼血</b>、春末、思歸、哀怨</td><td class="wd">—</td></tr>
-      <tr><td class="nm" rowspan="6">植物</td><td class="wd">竹</td><td><b>堅硬的節</b>、虛心、步步高升</td><td class="wd">—</td></tr>
-      <tr><td class="wd">楊柳</td><td><b>離別</b>（折柳贈別）、灞陵、長條拂地</td><td class="wd">—</td></tr>
-      <tr><td class="wd">梅花</td><td><b>冰雪中綻放</b>、清香、不與桃李爭春</td><td><i class="hl">冰雪林中著此身</i>，不同桃李混芳塵。忽然一夜<i class="hl">清香</i>發，散作乾坤萬里春。</td></tr>
-      <tr><td class="wd">牡丹</td><td><b>百花王</b>、天下無雙豔、富貴</td><td>落盡殘紅始吐芳，佳名喚作<i class="hl">百花王</i>。競誇<i class="hl">天下無雙豔</i>，獨占人間第一香。</td></tr>
-      <tr><td class="wd">蓮花</td><td><b>出淤泥而不染</b>、亭亭淨植、水雲鄉</td><td>本無塵土氣，<i class="hl">自在水雲鄉</i>。楚楚淨如拭，<i class="hl">亭亭生妙香</i>。</td></tr>
-      <tr><td class="wd">向日葵</td><td><b>向陽</b>、太陽田、梵谷</td><td class="wd">—</td></tr>
+      <tr><td class="nm" rowspan="6">動物</td><td class="wd">蛇</td><td>伊甸園、曲折蜿蜒</td><td>出了<i class="hl">伊甸園</i>／再直的路／也<i class="hl">走得曲折蜿蜒</i>／艱難痛苦</td></tr>
+      <tr><td class="wd">蚊子</td><td>微小的存在、嗡嗡聲</td><td>感謝你們／對於我／小小的存在／還<i class="hl">報予</i>／<i class="hl">生命最熱烈的掌聲</i></td></tr>
+      <tr><td class="wd">蜜蜂</td><td>採花釀蜜、辛勞無所得</td><td>不論平地與山尖，無限風光盡被占。<i class="hl">採得百花成蜜後</i>，為誰辛苦為誰甜？</td></tr>
+      <tr><td class="wd">螢火蟲</td><td>暗中發光、弱翅微光</td><td>的歷流光小，飄颻<i class="hl">弱翅</i>輕。恐畏無人識，<i class="hl">獨自暗中明</i>。</td></tr>
+      <tr><td class="wd">蟬（知了）</td><td>飲露高潔、螳螂捕蟬</td><td><i class="hl">飲露</i>身何潔，吟風韻更長。斜陽千萬樹，無處避<i class="hl">螳螂</i>。</td></tr>
+      <tr><td class="wd">杜鵑（子規）</td><td>啼血、思歸、春末哀怨</td><td>雨恨花愁同此冤，<i class="hl">啼時聞處正春繁</i>。<i class="hl">千聲萬血</i>誰哀爾，爭得如花笑不言。</td></tr>
+      <tr><td class="nm" rowspan="6">植物</td><td class="wd">竹</td><td>堅硬的節、虛心、步步高升</td><td>也只有沿著<i class="hl">堅硬的環節</i>／向天空／<i class="hl">步步高升</i>／才是你不變的志向</td></tr>
+      <tr><td class="wd">楊柳</td><td>離別（折柳贈別）、灞陵</td><td><i class="hl">枝鬥纖腰葉鬥眉</i>，春來無處不如絲。<i class="hl">灞陵</i>原上多<i class="hl">離別</i>，少有<i class="hl">長條拂地垂</i>。</td></tr>
+      <tr><td class="wd">梅花</td><td>冰雪中綻放、清香、不與桃李爭春</td><td><i class="hl">冰雪林中著此身</i>，不同桃李混芳塵。忽然一夜<i class="hl">清香</i>發，散作乾坤萬里春。</td></tr>
+      <tr><td class="wd">牡丹</td><td>百花王、天下無雙豔、富貴</td><td>落盡殘紅始吐芳，佳名喚作<i class="hl">百花王</i>。競誇<i class="hl">天下無雙豔</i>，獨占人間第一香。</td></tr>
+      <tr><td class="wd">蓮花</td><td>出淤泥而不染、亭亭淨植</td><td>本無塵土氣，<i class="hl">自在水雲鄉</i>。楚楚淨如拭，<i class="hl">亭亭生妙香</i>。</td></tr>
+      <tr><td class="wd">向日葵</td><td>向陽、太陽田、梵谷</td><td>一片<i class="hl">太陽田</i>／開了一片小太陽／<i class="hl">梵谷</i>晒了一個夏天</td></tr>
     </table></div>
     <h2 class="sec">慣用語</h2>
     <div class="mtabwrap"><table class="mtab" style="min-width:620px">
@@ -1450,7 +1483,8 @@ function renderUnits(){
     const b=document.createElement("button");
     b.className="unit"+(unit===k?" active":"");
     b.textContent=UNITS[k].name;
-    b.onclick=()=>{if(unit===k)return;unit=k;secSel="all";diffSel="all";qQuit();renderUnits();renderLearn();renderChips();renderList();};
+    b.onclick=()=>{if(unit===k)return;unit=k;secSel="all";diffSel="all";qQuit();renderUnits();renderLearn();renderChips();renderList();
+};
     box.appendChild(b);
   });
   $("#subT").textContent="學習重點＋題庫測驗｜"+UNITS[unit].name+"（"+UNITS[unit].qs.length+" 題）";
@@ -1571,6 +1605,116 @@ document.querySelectorAll("img[data-im]").forEach(el=>{
   else{const td=el.closest("td");if(td&&td.classList.contains("thumb"))td.textContent="—";else el.remove();}
 });
 renderUnits();renderLearn();renderChips();renderList();
+
+/* ===== 全站搜尋 ===== */
+(function(){
+  const box=$("#sq"), go=$("#sgo"), clr=$("#sx"), out=$("#sres");
+  if(!box) return;
+  let IDX=null;
+
+  /* 建索引：每個單元的每個 h2.sec 為一段，收集到下一個 h2 之前的所有元素 */
+  function build(){
+    const idx=[];
+    Object.keys(UNITS).forEach(u=>{
+      const pane=$("#learn-"+u); if(!pane) return;
+      let cur=null;
+      [...pane.children].forEach(el=>{
+        if(el.tagName==="H2"&&el.classList.contains("sec")){
+          cur={unit:u,unitName:UNITS[u].name,sec:el.textContent.trim(),el:el,text:""};
+          idx.push(cur);
+        } else if(cur){
+          cur.text+=" "+el.textContent.replace(/\s+/g," ");
+        }
+      });
+    });
+    return idx;
+  }
+
+  const norm=s=>String(s).toLowerCase();
+  const escH=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+  function mark(s,q){
+    const i=norm(s).indexOf(norm(q));
+    if(i<0) return escH(s);
+    return escH(s.slice(0,i))+"<mark>"+escH(s.slice(i,i+q.length))+"</mark>"+escH(s.slice(i+q.length));
+  }
+
+  /* 取出關鍵字前後文 */
+  function snip(text,q,pad){
+    const i=norm(text).indexOf(norm(q));
+    if(i<0) return "";
+    const a=Math.max(0,i-pad), b=Math.min(text.length,i+q.length+pad);
+    return (a>0?"…":"")+text.slice(a,b).trim()+(b<text.length?"…":"");
+  }
+
+  function jump(unitKey,secText){
+    if(unit!==unitKey){unit=unitKey;secSel="all";diffSel="all";qQuit();renderUnits();renderLearn();renderChips();renderList();}
+    /* 切到「學習重點」分頁 */
+    document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+    const lt=document.querySelector('.tab[data-tab="learn"]'); if(lt)lt.classList.add("active");
+    document.querySelectorAll(".pane").forEach(p=>p.classList.remove("show"));
+    $("#pane-learn").classList.add("show");
+    const h=[...document.querySelectorAll("#learn-"+unitKey+" h2.sec")].find(x=>x.textContent.trim()===secText);
+    if(h){h.scrollIntoView({block:"start",behavior:"smooth"});h.classList.remove("secflash");void h.offsetWidth;h.classList.add("secflash");}
+  }
+
+  function run(){
+    const q=box.value.trim();
+    if(!q){out.hidden=true;clr.hidden=true;return;}
+    if(!IDX) IDX=build();
+    clr.hidden=false; out.hidden=false;
+
+    /* 學習重點命中 */
+    const hits=IDX.filter(s=>norm(s.sec).includes(norm(q))||norm(s.text).includes(norm(q)));
+
+    /* 題庫命中（含題幹、選項、詳解） */
+    const qhits=[];
+    Object.keys(UNITS).forEach(u=>{
+      (UNITS[u].qs||[]).forEach(o=>{
+        const blob=[o.q,(o.opts||[]).join(" "),o.exp||""].join(" ");
+        if(norm(blob).includes(norm(q))) qhits.push({u:u,uName:UNITS[u].name,o:o});
+      });
+    });
+
+    let html='<div class="shead">「'+escH(q)+'」找到 學習重點 '+hits.length+' 節、題庫 '+qhits.length+' 題</div>';
+
+    if(hits.length){
+      let lastU="";
+      hits.slice(0,40).forEach(s=>{
+        if(s.unitName!==lastU){html+='<div class="sgrp">📚 '+escH(s.unitName)+'</div>';lastU=s.unitName;}
+        const sp=snip(s.text,q,38)||snip(s.sec,q,38)||s.text.slice(0,80).trim()+"…";
+        html+='<button class="sitem" data-u="'+s.unit+'" data-s="'+escH(s.sec)+'">'+
+              '<span class="swhere">'+escH(s.sec)+'</span>'+mark(sp,q)+'</button>';
+      });
+      if(hits.length>40) html+='<div class="snone">（還有 '+(hits.length-40)+' 節未列出，請輸入更精確的關鍵字）</div>';
+    }
+
+    if(qhits.length){
+      html+='<div class="sgrp">📝 題庫</div>';
+      qhits.slice(0,15).forEach(h=>{
+        const o=h.o, ans=(o.opts||[])[o.ans]||"";
+        html+='<div class="qcard">'+mark(String(o.q).replace(/⟦[^⟧]*⟧/g,"〔圖〕"),q)+
+              '<br><span class="qa">答：'+escH(String(ans).replace(/。$/,""))+'</span>'+
+              (o.exp?'<span class="qe">'+mark(String(o.exp).replace(/⟦[^⟧]*⟧/g,"〔圖〕"),q)+'</span>':'')+
+              '<span class="qe">—— '+escH(h.uName)+(o.src?'｜'+escH(o.src):'')+'</span></div>';
+      });
+      if(qhits.length>15) html+='<div class="snone">（還有 '+(qhits.length-15)+' 題未列出）</div>';
+    }
+
+    if(!hits.length&&!qhits.length) html+='<div class="snone">找不到「'+escH(q)+'」。試試較短的關鍵字，例如「豆蔻」而不是「豆蔻年華的意思」。</div>';
+
+    out.innerHTML=html;
+    out.querySelectorAll(".sitem").forEach(b=>b.onclick=()=>jump(b.dataset.u,b.dataset.s));
+  }
+
+  go.onclick=run;
+  clr.onclick=()=>{box.value="";out.hidden=true;clr.hidden=true;box.focus();};
+  box.addEventListener("keydown",e=>{
+    if(e.key==="Enter"){e.preventDefault();run();}
+    if(e.key==="Escape"){box.value="";out.hidden=true;clr.hidden=true;}
+  });
+})();
+
 </script>
 </body>
 </html>
