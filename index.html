@@ -1922,7 +1922,7 @@ function renderUnits(){
     const b=document.createElement("button");
     b.className="unit"+(unit===k?" active":"");
     b.textContent=UNITS[k].name;
-    b.onclick=()=>{if(unit===k)return;unit=k;secSel="all";diffSel="all";qQuit();renderUnits();renderLearn();renderChips();renderList();
+    b.onclick=()=>{if(unit===k)return;unit=k;secSel="all";SSEL.clear();diffSel="all";qQuit();renderUnits();renderLearn();renderChips();renderList();
 };
     box.appendChild(b);
   });
@@ -1940,8 +1940,11 @@ document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
 
 /* ===== 測驗 ===== */
 let secSel="all", diffSel="all", QZ=null;
+/* 分類可複選：SSEL 空＝全部 */
+var SSEL=new Set();
+function selTag(){return SSEL.size?[...SSEL].sort().join("+"):"all";}
 const bank=()=>UNITS[unit].qs;
-const pool=()=>bank().filter(q=>(secSel==="all"||q.sec===secSel)&&(diffSel==="all"||q.diff===diffSel));
+const pool=()=>bank().filter(q=>(!SSEL.size||SSEL.has(q.sec))&&(diffSel==="all"||q.diff===diffSel));
 function chips(box,cur,items,fn){
   const b=$(box);b.innerHTML="";
   items.forEach(it=>{const c=document.createElement("button");c.className="chip"+(cur===it.v?" active":"");
@@ -1958,17 +1961,20 @@ function renderChips(){
   }
   $("#startBtn").style.display="";
   const secs=[...new Set(qs.map(q=>q.sec))];
+  const sb=$("#secChips");sb.innerHTML="";
   if(secs.length>1){
-    chips("#secChips",secSel,[{v:"all",t:"全部（"+qs.length+" 題）"}]
-      .concat(secs.map(s=>({v:s,t:s+"（"+cnt(q=>q.sec===s)+"）"}))),v=>{secSel=v;});
-  }else{$("#secChips").innerHTML="";secSel="all";}
+    const mk=(active,label,fn)=>{const c=document.createElement("button");c.className="chip"+(active?" active":"");c.textContent=label;
+      c.onclick=()=>{fn();renderChips();renderList();};sb.appendChild(c);};
+    mk(!SSEL.size,"全部（"+qs.length+" 題）",()=>SSEL.clear());
+    secs.forEach(s=>mk(SSEL.has(s),s+"（"+cnt(q=>q.sec===s)+"）",()=>{if(SSEL.has(s))SSEL.delete(s);else SSEL.add(s);}));
+  }else SSEL.clear();
   const diffs=["易","中","難"].filter(d=>cnt(q=>q.diff===d)>0);
   if(diffs.length){
     chips("#diffChips",diffSel,[{v:"all",t:"所有難度"}]
       .concat(diffs.map(d=>({v:d,t:d+"（"+cnt(q=>q.diff===d)+"）"}))),v=>{diffSel=v;});
   }else{$("#diffChips").innerHTML="";diffSel="all";}
   $("#startBtn").textContent="📝 開始測驗（"+pool().length+" 題）";
-  let best=0;try{best=+localStorage.getItem("yw_best_"+unit+"_"+secSel+"_"+diffSel)||0;}catch(e){}
+  let best=0;try{best=+localStorage.getItem("yw_best_"+unit+"_"+selTag()+"_"+diffSel)||0;}catch(e){}
   $("#poolStat").textContent=best?("此範圍最佳答對率 "+best+"%"):"";
   if(QZ)qQuit(); /* 換範圍中止進行中的測驗 */
 }
@@ -1984,7 +1990,7 @@ function renderList(){
 }
 window.tglA=function(btn){btn.nextElementSibling.classList.toggle("show");};
 function qStart(list){
-  QZ={list:shuffle((list||pool()).slice()),i:0,score:0,wrong:[],full:!list,u:unit,scope:secSel+"_"+diffSel};
+  QZ={list:shuffle((list||pool()).slice()),i:0,score:0,wrong:[],full:!list,u:unit,scope:selTag()+"_"+diffSel};
   if(!QZ.list.length){alert("此範圍沒有題目。");QZ=null;return;}
   $("#qlist").style.display="none";$("#startBtn").style.display="none";
   qRender();
@@ -2087,7 +2093,7 @@ renderUnits();renderLearn();renderChips();renderList();
   }
 
   function jump(unitKey,secText){
-    if(unit!==unitKey){unit=unitKey;secSel="all";diffSel="all";qQuit();renderUnits();renderLearn();renderChips();renderList();}
+    if(unit!==unitKey){unit=unitKey;secSel="all";SSEL.clear();diffSel="all";qQuit();renderUnits();renderLearn();renderChips();renderList();}
     /* 切到「學習重點」分頁 */
     document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
     const lt=document.querySelector('.tab[data-tab="learn"]'); if(lt)lt.classList.add("active");
